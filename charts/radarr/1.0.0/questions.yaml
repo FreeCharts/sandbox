@@ -1,5 +1,18 @@
 groups:
+- name: Ingress
+  description: Configure ingress for the application
 
 portals: {}
 
 questions:
+- variable: ingress
+  label: Ingress
+  group: Ingress
+  schema:
+    type: dict
+    attrs:
+    - variable: hostName
+      label: Hostname
+      schema:
+        type: string
+        required: true
