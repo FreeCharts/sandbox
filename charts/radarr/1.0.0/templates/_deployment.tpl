@@ -60,13 +60,19 @@ spec:
           periodSeconds: 5
         {{- end }}
 
+        volumeMounts:
+        {{- range $name, $values := .Values.storage }}
+        - name: {{ $name }}
+          mountPath: {{ $values.mountPath }}
+        {{- end }}
+
       volumes:
       {{- range $name, $values := .Values.storage }}
       - name: {{ $name }}
-      {{- if eq "ixVolume" $values.type }}
-        {{- include "freecharts.v1.volume.ixvolume" (dict "rootCtx" $ "storage" $values ) | nindent 8 -}}
-      {{- else if eq "hostPath" $values.type }}
-        {{- include "freecharts.v1.volume.hostpath" (dict "rootCtx" $ "storage" $values ) | nindent 8 -}}
-      {{- end -}}
+        {{- if eq "ixVolume" $values.type }}
+          {{- include "freecharts.v1.volume.ixvolume" (dict "rootCtx" $ "storage" $values ) | nindent 8 -}}
+        {{- else if eq "hostPath" $values.type }}
+          {{- include "freecharts.v1.volume.hostpath" (dict "rootCtx" $ "storage" $values ) | nindent 8 -}}
+        {{- end -}}
       {{- end -}}
 {{- end -}}
