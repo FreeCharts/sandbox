@@ -78,9 +78,9 @@ questions:
             default: ixVolume
             enum:
             - value: hostPath
-              description: Host Path (Path that already exists on the system)
+              description: Host Path
             - value: ixVolume
-              description: ixVolume (Dataset created automatically by the system)
+              description: ixVolume
         - variable: datasetName
           label: Dataset Name
           schema:
