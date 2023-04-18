@@ -59,18 +59,4 @@ spec:
           timeoutSeconds: 2
           periodSeconds: 5
         {{- end }}
-
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 1000
-          runAsGroup: 1000
-          readOnlyRootFilesystem: true
-          allowPrivilegeEscalation: false
-          privileged: false
-          seccompProfile:
-            type: RuntimeDefault
-          capabilities:
-            add: []
-            drop:
-              - ALL
 {{- end -}}
