@@ -1,0 +1,2 @@
+{{ include "freecharts.v1.deployment" $ }}
+{{ include "freecharts.v1.service" $ }}
