@@ -1,0 +1,9 @@
+storage:
+  config:
+    type: ixVolume
+    datasetName: config
+  movies:
+    type: hostPath
+    hostPath: /mnt/{{ .Release.Name }}/movies
+ixVolumes:
+- hostPath: /ix-volumes/config

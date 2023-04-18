@@ -13,3 +13,8 @@ healthcheck:
     path: /ping
     scheme: HTTP
 
+storage:
+  config:
+    mountPath: /config
+  movies:
+    mountPath: /movies

@@ -59,4 +59,14 @@ spec:
           timeoutSeconds: 2
           periodSeconds: 5
         {{- end }}
+
+      volumes:
+      {{- range $name, $values := .Values.storage }}
+      - name: {{ $name }}
+      {{- if eq "ixVolume" $values.type }}
+        {{- include "freecharts.v1.volume.ixvolume" (dict "rootCtx" $ "storage" $values ) | nindent 8 -}}
+      {{- else if eq "hostPath" $values.type }}
+        {{- include "freecharts.v1.volume.hostpath" (dict "rootCtx" $ "storage" $values ) | nindent 8 -}}
+      {{- end -}}
+      {{- end -}}
 {{- end -}}
