@@ -1,0 +1,101 @@
+groups:
+- name: Ingress
+  description: Configure ingress for the application
+- name: Storage
+  description: Persist and share data that is separate from the lifecycle of the container
+
+portals: {}
+
+questions:
+- variable: ingress
+  label: Ingress
+  group: Ingress
+  schema:
+    type: dict
+    attrs:
+    - variable: hostName
+      label: Hostname
+      schema:
+        type: string
+        required: true
+
+- variable: storage
+  label: Storage
+  group: Storage
+  schema:
+    type: dict
+    attrs:
+    - variable: config
+      label: "Configuration Volume"
+      schema:
+        type: dict
+        attrs:
+        - variable: type
+          label: Type
+          description: |
+            ixVolume: Is dataset created automatically by the system.</br>
+            Host Path: Is a path that already exists on the system.
+          schema:
+            type: string
+            required: true
+            default: ixVolume
+            enum:
+            - value: hostPath
+              description: Host Path
+            - value: ixVolume
+              description: ixVolume
+        - variable: datasetName
+          label: Dataset Name
+          schema:
+            type: string
+            show_if: [["type", "=", "ixVolume"]]
+            required: true
+            hidden: true
+            immutable: true
+            default: config
+            $ref:
+            - "normalize/ixVolume"
+        - variable: hostPath
+          label: Host Path
+          schema:
+            type: hostpath
+            show_if: [["type", "=", "hostPath"]]
+            immutable: true
+            required: true
+    - variable: movies
+      label: "Movies Volume"
+      schema:
+        type: dict
+        attrs:
+        - variable: type
+          label: Type
+          description: |
+            ixVolume: Is dataset created automatically by the system.</br>
+            Host Path: Is a path that already exists on the system.
+          schema:
+            type: string
+            required: true
+            default: ixVolume
+            enum:
+            - value: hostPath
+              description: Host Path
+            - value: ixVolume
+              description: ixVolume
+        - variable: datasetName
+          label: Dataset Name
+          schema:
+            type: string
+            show_if: [["type", "=", "ixVolume"]]
+            required: true
+            hidden: true
+            immutable: true
+            default: movies
+            $ref:
+            - "normalize/ixVolume"
+        - variable: hostPath
+          label: Host Path
+          schema:
+            type: hostpath
+            show_if: [["type", "=", "hostPath"]]
+            immutable: true
+            required: true
