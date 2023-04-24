@@ -1,11 +1,11 @@
 image:
   repository: ghcr.io/linuxserver/radarr
   pullPolicy: IfNotPresent
-  tag: 4.4.4.7068-ls169
+  tag: v5.14
 
 ports:
-- name: webui
-  containerPort: 7878
+  - name: webui
+    containerPort: 7878
 
 healthcheck:
   httpGet:
