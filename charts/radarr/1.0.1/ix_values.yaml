@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linuxserver/radarr
   pullPolicy: IfNotPresent
-  tag: v5.14
+  tag: 4.4.4.7068-ls170
 
 ports:
   - name: webui
